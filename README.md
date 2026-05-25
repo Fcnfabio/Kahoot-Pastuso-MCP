@@ -13,6 +13,7 @@ Un juego interactivo tipo Kahoot construido con **Streamlit**, usando **RAG (Ret
 - ⚡ Sistema de puntuación basado en velocidad
 - 🔄 Flujo automático entre preguntas
 - 🔐 API Key segura con `.env`
+- 🔗 **NUEVO:** Conexión MCP con GitHub para automatización
 
 ---
 
@@ -24,10 +25,13 @@ Un juego interactivo tipo Kahoot construido con **Streamlit**, usando **RAG (Ret
 ├── rag.py              # Lógica de preguntas y feedback
 ├── embeddings.py       # RAG + FAISS + fastembed
 ├── llm.py              # Cliente OpenRouter
+├── mcp_github_client.py # Cliente MCP para conexión con GitHub
 ├── data.json           # Dataset de palabras
+├── mcp.json            # Configuración MCP (no subir a git)
 ├── requirements.txt
-├── .env                # API Key (no subir a git)
-└── README.md
+├── .env                # API Keys (no subir a git)
+├── README.md
+└── README_MCP.md       # Documentación de MCP
 ```
 
 ---
@@ -63,7 +67,10 @@ Crea un archivo `.env` en la raíz del proyecto:
 
 ```env
 OPENROUTER_API_KEY=sk-or-v1-xxxxxxxxxxxxxxxx
+GITHUB_TOKEN=ghp_xxxxxxxxxxxxxxxxxxxxxxxxxx
 ```
+
+> **Nota:** El `GITHUB_TOKEN` es opcional, solo necesario si quieres usar las funcionalidades MCP con GitHub.
 
 ---
 
@@ -121,9 +128,19 @@ streamlit run app.py
 
 ---
 
+## 🔗 MCP con GitHub
+
+Este proyecto incluye integración con **Model Context Protocol (MCP)** para conectar con GitHub. Esto permite:
+
+- Usar herramientas de GitHub directamente desde clientes MCP compatibles (como Claude Desktop)
+- Automatizar tareas de repositorio
+- Crear issues, pull requests, y más
+
+Para más detalles, ver [README_MCP.md](README_MCP.md).
+
 ## ⚠️ Notas
 
-- No subir `.env` al repositorio
+- No subir `.env` ni `mcp.json` al repositorio
 - Modelos LLM gratuitos pueden tener rate limit (429)
 - Se implementa fallback automático de modelos
 
